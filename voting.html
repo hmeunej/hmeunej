@@ -67,11 +67,6 @@
         <button class="vote-button" data-kandidat="Kandidat 3">Pilih</button>
     </div>
 
-    <!-- Tombol Logout -->
-    <div style="margin-top: 30px;">
-        <button onclick="logout()">Logout</button>
-    </div>
-
     <!-- Firebase SDK -->
     <script type="module">
         // Import Firebase
@@ -101,7 +96,8 @@
                 username: username || "Guest", // Default username jika tidak ada
                 timestamp: new Date().toISOString()
             }).then(() => {
-                alert("Voting berhasil! Terima kasih telah memilih.");
+                // Arahkan ke halaman terima kasih
+                window.location.href = "thankyou.html";
             }).catch(error => {
                 console.error("Error saat menyimpan voting:", error.message);
                 alert("Terjadi kesalahan. Coba lagi.");
@@ -112,16 +108,10 @@
         document.querySelectorAll(".vote-button").forEach(button => {
             button.addEventListener("click", function() {
                 const kandidat = this.getAttribute("data-kandidat");
-                const username = prompt("Masukkan nama Anda (opsional):") || "Guest"; // Contoh input nama
+                const username = prompt("Masukkan nama Anda (opsional):") || "Guest"; // Input nama (opsional)
                 simpanVoting(kandidat, username);
             });
         });
-
-        // Fungsi Logout
-        function logout() {
-            alert("Anda telah logout.");
-            window.location.href = "index.html"; // Arahkan ke halaman lain
-        }
     </script>
 </body>
 </html>

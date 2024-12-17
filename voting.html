@@ -5,10 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pemilihan Ketua Himpunan Mahasiswa Elektro</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; }
-        .candidate { display: inline-block; margin: 20px; text-align: center; }
-        img { width: 150px; height: auto; border-radius: 10px; }
-        button { margin-top: 10px; padding: 10px; background: #004aad; color: #fff; border: none; border-radius: 5px; cursor: pointer; }
+        body { 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            margin: 0; 
+            padding: 0;
+        }
+        h1, h2 { color: #004aad; }
+        .candidate { 
+            display: inline-block; 
+            margin: 20px; 
+            padding: 15px; 
+            border: 1px solid #ddd; 
+            border-radius: 10px; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        img { 
+            width: 150px; 
+            height: auto; 
+            border-radius: 10px; 
+            margin-bottom: 10px;
+        }
+        button { 
+            margin-top: 10px; 
+            padding: 10px 15px; 
+            background: #004aad; 
+            color: #fff; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            font-size: 16px;
+        }
         button:hover { background: #3b82f6; }
     </style>
 </head>
@@ -46,10 +73,11 @@
     </div>
 
     <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js"></script>
+    <script type="module">
+        // Import Firebase
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+        import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
 
-    <script>
         // Konfigurasi Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyCk0MKkFLR6GWlbVWw6PwV0eXyHTVKEoVI",
@@ -58,42 +86,41 @@
             projectId: "e-voting-hme-2025",
             storageBucket: "e-voting-hme-2025.appspot.com",
             messagingSenderId: "109600283344",
-            appId: "1:109600283344:web:920745c831eaa312665cd5",
-            measurementId: "G-TC906L46K5"
+            appId: "1:109600283344:web:920745c831eaa312665cd5"
         };
 
         // Inisialisasi Firebase
-        const app = firebase.initializeApp(firebaseConfig);
-        const database = firebase.database();
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
 
-        // Simpan voting ke Firebase
+        // Fungsi untuk menyimpan voting ke Firebase
         function simpanVoting(kandidat, username) {
-            database.ref("voting").push({
+            const votingRef = ref(database, "voting"); // Path "voting" di database
+            push(votingRef, {
                 kandidat: kandidat,
-                username: username,
+                username: username || "Guest", // Default username jika tidak ada
                 timestamp: new Date().toISOString()
             }).then(() => {
-                alert("Voting berhasil!");
+                alert("Voting berhasil! Terima kasih telah memilih.");
             }).catch(error => {
-                console.error("Error:", error.message);
+                console.error("Error saat menyimpan voting:", error.message);
                 alert("Terjadi kesalahan. Coba lagi.");
             });
         }
 
-        // Event Listener
-        document.addEventListener("DOMContentLoaded", function() {
-            document.querySelectorAll(".vote-button").forEach(button => {
-                button.addEventListener("click", function() {
-                    const kandidat = this.getAttribute("data-kandidat");
-                    const username = "User123"; // Contoh username
-                    simpanVoting(kandidat, username);
-                });
+        // Event Listener untuk Tombol Voting
+        document.querySelectorAll(".vote-button").forEach(button => {
+            button.addEventListener("click", function() {
+                const kandidat = this.getAttribute("data-kandidat");
+                const username = prompt("Masukkan nama Anda (opsional):") || "Guest"; // Contoh input nama
+                simpanVoting(kandidat, username);
             });
         });
 
-        // Logout
+        // Fungsi Logout
         function logout() {
-            window.location.href = "index.html";
+            alert("Anda telah logout.");
+            window.location.href = "index.html"; // Arahkan ke halaman lain
         }
     </script>
 </body>

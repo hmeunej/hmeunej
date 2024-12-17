@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Voting</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Pilih Kandidat</h2>
+        <form id="voteForm">
+            <label>
+                <input type="radio" name="candidate" value="Kandidat 1" required> Kandidat 1
+            </label><br>
+            <label>
+                <input type="radio" name="candidate" value="Kandidat 2"> Kandidat 2
+            </label><br>
+            <label>
+                <input type="radio" name="candidate" value="Kandidat 3"> Kandidat 3
+            </label><br>
+            <button type="submit">Kirim Suara</button>
+        </form>
+        <div id="successMessage"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

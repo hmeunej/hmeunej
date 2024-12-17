@@ -3,20 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Pemilih</title>
+    <title>Pemilihan Ketua Himpunan Mahasiswa Elektro</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Gaya Global */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #007bff, #0056b3);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        /* Kontainer Utama */
+        .container {
+            background-color: #ffffff;
+            max-width: 400px;
+            margin: auto;
+            margin-top: 50px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        h1 {
+            color: #0056b3;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #007bff;
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+        }
+
+        /* Input dan Tombol */
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Pesan Kesalahan */
+        .error {
+            color: red;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: auto;
+            text-align: center;
+            padding: 10px;
+            color: #ffffff;
+            background-color: #0056b3;
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
 <body>
+    <!-- Kontainer Halaman -->
     <div class="container">
-        <h2>Login Pemilih</h2>
+        <h1>Pemilihan Ketua Himpunan Mahasiswa Elektro</h1>
+        <h2>Universitas Jember Periode 2025</h2>
         <form id="loginForm">
-            <input type="text" id="username" placeholder="Username" required>
-            <input type="password" id="password" placeholder="Password" required>
+            <input type="text" id="username" placeholder="Masukkan Username" required>
+            <input type="password" id="password" placeholder="Masukkan Password" required>
             <button type="submit">Login</button>
         </form>
-        <div id="errorMessage"></div>
+        <div id="errorMessage" class="error"></div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- Footer -->
+    <footer>
+        &copy; 2024 Himpunan Mahasiswa Elektro, Universitas Jember. All Rights Reserved.
+    </footer>
+
+    <!-- Script Login -->
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            // Simulasi Validasi Login
+            if (username === "user1" && password === "password1") {
+                window.location.href = "voting.html"; // Redirect ke halaman voting
+            } else {
+                document.getElementById("errorMessage").innerText = "Username atau password salah!";
+            }
+        });
+    </script>
 </body>
 </html>

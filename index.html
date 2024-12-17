@@ -271,49 +271,35 @@ button#redirectButton:hover {
         })
         .catch(error => console.error("Gagal mengambil data JSON:", error));
 
-    // Event Listener untuk Form Login
+   // Event Listener untuk Form Login
     document.getElementById("loginForm").addEventListener("submit", function (e) {
         e.preventDefault(); // Mencegah form submit default
 
         const usernameInput = document.getElementById("username").value.trim();
         const passwordInput = document.getElementById("password").value.trim();
-
+    
         // Validasi username dan password
         const user = users.find(u => u.username === usernameInput && u.password === passwordInput);
-
+    
         if (user) {
+            // Simpan username ke localStorage
+            localStorage.setItem("username", usernameInput);
+
             // Tampilkan modal jika login berhasil
             const modal = document.getElementById("successModal");
             modal.style.display = "block";
-
-            // Event: Tutup modal jika tombol close ditekan
-            document.getElementById("closeModal").onclick = function () {
-                modal.style.display = "none";
-            };
 
             // Event: Redirect ke halaman voting
             document.getElementById("redirectButton").onclick = function () {
                 window.location.href = "voting.html"; // Redirect ke halaman voting
             };
 
-            // Event: Menutup modal jika user klik di luar modal
-            window.onclick = function (event) {
-                if (event.target === modal) {
-                    modal.style.display = "none";
-                }
-            };
-
-            // Event: Tutup modal menggunakan tombol ESC
-            document.addEventListener("keydown", function (event) {
-                if (event.key === "Escape") {
-                    modal.style.display = "none";
-                }
-            });
         } else {
             // Jika gagal, tampilkan pesan error
             document.getElementById("errorMessage").innerText = "Username atau password salah!";
         }
     });
+
 </script>
 <script>
     // Event Listener untuk Teks "Tampilkan"

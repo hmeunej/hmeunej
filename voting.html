@@ -88,21 +88,40 @@
         const app = initializeApp(firebaseConfig);
         const database = getDatabase(app);
 
-        // Fungsi untuk menyimpan voting ke Firebase
-        function simpanVoting(kandidat, username) {
-            const votingRef = ref(database, "voting"); // Path "voting" di database
-            push(votingRef, {
-                kandidat: kandidat,
-                username: username || "Guest", // Default username jika tidak ada
-                timestamp: new Date().toISOString()
-            }).then(() => {
-                // Arahkan ke halaman terima kasih
-                window.location.href = "thankyou.html";
-            }).catch(error => {
-                console.error("Error saat menyimpan voting:", error.message);
-                alert("Terjadi kesalahan. Coba lagi.");
-            });
-        }
+document.addEventListener("DOMContentLoaded", function () {
+    const username = localStorage.getItem("username"); // Ambil username dari localStorage
+
+    if (!username) {
+        alert("Anda harus login terlebih dahulu!");
+        window.location.href = "index.html"; // Redirect kembali ke halaman login jika tidak ada username
+    } else {
+        console.log("Username aktif:", username); // Log untuk memastikan username ada
+    }
+
+    // Event untuk tombol "Pilih"
+    document.querySelectorAll(".vote-button").forEach(button => {
+        button.addEventListener("click", function () {
+            const kandidat = this.getAttribute("data-kandidat");
+            simpanVoting(kandidat, username); // Kirim kandidat dan username
+        });
+    });
+});
+
+// Fungsi menyimpan voting ke Firebase
+function simpanVoting(kandidat, username) {
+    const votingRef = ref(database, "voting");
+    push(votingRef, {
+        kandidat: kandidat,
+        username: username,
+        timestamp: new Date().toISOString()
+    }).then(() => {
+        window.location.href = "thankyou.html"; // Redirect ke halaman terima kasih
+    }).catch(error => {
+        console.error("Error saat menyimpan voting:", error.message);
+        alert("Terjadi kesalahan. Coba lagi.");
+    });
+}
+
 
         // Event Listener untuk Tombol Voting
         document.querySelectorAll(".vote-button").forEach(button => {

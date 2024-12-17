@@ -4,26 +4,178 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Halaman Voting</title>
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background: #f4f6f9;
+            color: #333;
+        }
+
+        /* Header dan Tombol Logout */
+        .header {
+            background-color: #004aad;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .logout-btn {
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            background-color: #ff4b5c;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .logout-btn:hover {
+            background-color: #e43f4a;
+        }
+
+        /* Container Kandidat */
+        .candidates-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+
+        .candidate-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .candidate-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .candidate-card h3 {
+            margin: 10px 0;
+            font-size: 1.2rem;
+            color: #004aad;
+        }
+
+        .candidate-card p {
+            padding: 0 15px;
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .vote-btn {
+            background-color: #004aad;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .vote-btn:hover {
+            background-color: #3b82f6;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Pilih Kandidat</h2>
-        <form id="voteForm">
-            <label>
-                <input type="radio" name="candidate" value="Kandidat 1" required> Kandidat 1
-            </label><br>
-            <label>
-                <input type="radio" name="candidate" value="Kandidat 2"> Kandidat 2
-            </label><br>
-            <label>
-                <input type="radio" name="candidate" value="Kandidat 3"> Kandidat 3
-            </label><br>
-            <button type="submit">Kirim Suara</button>
-        </form>
-        <div id="successMessage"></div>
+    <!-- Header dan Tombol Logout -->
+    <div class="header">
+        <h1>Pemilihan Ketua Himpunan Mahasiswa Elektro</h1>
+        <button class="logout-btn" onclick="logout()">Logout</button>
     </div>
 
-    <script src="script.js"></script>
+    <!-- Container Kandidat -->
+    <div class="candidates-container">
+        <!-- Kandidat 1 -->
+        <div class="candidate-card">
+            <img src="kandidat1.jpg" alt="Kandidat 1">
+            <h3>Nama Kandidat 1</h3>
+            <p>Visi: Menjadikan himpunan lebih inovatif.<br>Misi: Memberdayakan potensi anggota.</p>
+            <button class="vote-btn" onclick="submitVote('Kandidat 1')">Pilih</button>
+        </div>
+        <!-- Kandidat 2 -->
+        <div class="candidate-card">
+            <img src="kandidat2.jpg" alt="Kandidat 2">
+            <h3>Nama Kandidat 2</h3>
+            <p>Visi: Membangun solidaritas kuat.<br>Misi: Meningkatkan kerjasama antar anggota.</p>
+            <button class="vote-btn" onclick="submitVote('Kandidat 2')">Pilih</button>
+        </div>
+        <!-- Kandidat 3 -->
+        <div class="candidate-card">
+            <img src="kandidat3.jpg" alt="Kandidat 3">
+            <h3>Nama Kandidat 3</h3>
+            <p>Visi: Menjadi organisasi unggul.<br>Misi: Melakukan inovasi program kerja.</p>
+            <button class="vote-btn" onclick="submitVote('Kandidat 3')">Pilih</button>
+        </div>
+        <!-- Kandidat 4 -->
+        <div class="candidate-card">
+            <img src="kandidat4.jpg" alt="Kandidat 4">
+            <h3>Nama Kandidat 4</h3>
+            <p>Visi: Memperkuat akademis.<br>Misi: Mendorong penelitian kolaboratif.</p>
+            <button class="vote-btn" onclick="submitVote('Kandidat 4')">Pilih</button>
+        </div>
+        <!-- Kandidat 5 -->
+        <div class="candidate-card">
+            <img src="kandidat5.jpg" alt="Kandidat 5">
+            <h3>Nama Kandidat 5</h3>
+            <p>Visi: Menumbuhkan semangat berkarya.<br>Misi: Mengoptimalkan peran himpunan.</p>
+            <button class="vote-btn" onclick="submitVote('Kandidat 5')">Pilih</button>
+        </div>
+    </div>
+
+    <script>
+        // Fungsi Logout
+        function logout() {
+            alert("Anda berhasil logout.");
+            window.location.href = "index.html"; // Redirect ke halaman login
+        }
+
+        // Fungsi Submit Vote
+        function submitVote(candidate) {
+            // Kirim data ke Google Apps Script
+            fetch('YOUR_GOOGLE_APPS_SCRIPT_URL', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ kandidat: candidate })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "success") {
+                    alert("Anda berhasil memilih " + candidate + ". Terima kasih!");
+                    window.location.href = "thankyou.html"; // Redirect ke halaman terima kasih
+                } else {
+                    alert("Gagal mengirim voting. Silakan coba lagi.");
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("Terjadi kesalahan. Coba lagi.");
+            });
+        }
+    </script>
 </body>
 </html>

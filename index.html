@@ -175,21 +175,36 @@
         <h1>Pemilihan Ketua Himpunan Mahasiswa Elektro</h1>
         <h2>Universitas Jember</h2>
         <h3>Periode 2025</h3>
-
-        <!-- Form Login -->
-        <form id="loginForm">
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" placeholder="Masukkan Username" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" placeholder="Masukkan Password" required>
-            </div>
-            <button type="submit">Login</button>
-        </form>
-        <div id="errorMessage" class="error"></div>
+<!-- Form Login -->
+<form id="loginForm">
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="Masukkan Username" required>
     </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Masukkan Password" required>
+    </div>
+    <button type="submit">Login</button>
+</form>
+<div id="errorMessage" class="error"></div>
+
+<!-- Script Redirect -->
+<script>
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+        e.preventDefault(); // Mencegah form submit default
+        
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        // Simulasi validasi username dan password
+        if (username === "user1" && password === "password1") { 
+            window.location.href = "voting.html"; // Hyperlink ke halaman voting.html
+        } else {
+            document.getElementById("errorMessage").innerText = "Username atau password salah!";
+        }
+    });
+</script>
 
     <!-- Footer -->
     <footer>

@@ -250,56 +250,63 @@ button#redirectButton:hover {
         <button id="redirectButton">Lanjutkan</button>
     </div>
 </div>
- <script>
-        let users = [];
+<script>
+    let users = [];
 
-        // Mengambil file JSON dari direktori utama
-        fetch("data.json")
-            .then(response => response.json())
-            .then(data => {
-                users = data; // Simpan data JSON ke dalam variabel users
-                console.log("Data pengguna:", users); // Log untuk memastikan data masuk
-            })
-            .catch(error => console.error("Gagal mengambil data JSON:", error));
+    // Mengambil file JSON dari direktori utama
+    fetch("data.json")
+        .then(response => response.json())
+        .then(data => {
+            users = data; // Simpan data JSON ke dalam variabel users
+            console.log("Data pengguna:", users); // Log untuk memastikan data masuk
+        })
+        .catch(error => console.error("Gagal mengambil data JSON:", error));
 
-        // Event Listener untuk Form Login
-document.getElementById("loginForm").addEventListener("submit", function(e) {
-    e.preventDefault(); // Mencegah form submit default
+    // Event Listener untuk Form Login
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+        e.preventDefault(); // Mencegah form submit default
 
-    const usernameInput = document.getElementById("username").value.trim();
-    const passwordInput = document.getElementById("password").value.trim();
+        const usernameInput = document.getElementById("username").value.trim();
+        const passwordInput = document.getElementById("password").value.trim();
 
-    // Validasi username dan password
-    const user = users.find(u => u.username === usernameInput && u.password === passwordInput);
+        // Validasi username dan password
+        const user = users.find(u => u.username === usernameInput && u.password === passwordInput);
 
-    if (user) {
-        // Tampilkan modal jika login berhasil
-        const modal = document.getElementById("successModal");
-        modal.style.display = "block";
+        if (user) {
+            // Tampilkan modal jika login berhasil
+            const modal = document.getElementById("successModal");
+            modal.style.display = "block";
 
-        // Tutup modal jika tombol close ditekan
-        document.getElementById("closeModal").onclick = function() {
-            modal.style.display = "none";
-        };
-
-        // Redirect ke halaman voting setelah tombol ditekan
-        document.getElementById("redirectButton").onclick = function() {
-            window.location.href = "voting.html"; // Redirect ke halaman voting
-        };
-
-        // Menutup modal jika user klik di luar modal
-        window.onclick = function(event) {
-            if (event.target == modal) {
+            // Event: Tutup modal jika tombol close ditekan
+            document.getElementById("closeModal").onclick = function () {
                 modal.style.display = "none";
-            }
-        };
-    } else {
-        // Jika gagal, tampilkan pesan error
-        document.getElementById("errorMessage").innerText = "Username atau password salah!";
-    }
-});
+            };
 
-    </script>
+            // Event: Redirect ke halaman voting
+            document.getElementById("redirectButton").onclick = function () {
+                window.location.href = "voting.html"; // Redirect ke halaman voting
+            };
+
+            // Event: Menutup modal jika user klik di luar modal
+            window.onclick = function (event) {
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
+            };
+
+            // Event: Tutup modal menggunakan tombol ESC
+            document.addEventListener("keydown", function (event) {
+                if (event.key === "Escape") {
+                    modal.style.display = "none";
+                }
+            });
+        } else {
+            // Jika gagal, tampilkan pesan error
+            document.getElementById("errorMessage").innerText = "Username atau password salah!";
+        }
+    });
+</script>
+
     <!-- Footer -->
     <footer>
         &copy; 2024 Himpunan Mahasiswa Elektro, Universitas Jember. All Rights Reserved.

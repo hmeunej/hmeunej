@@ -191,17 +191,14 @@
  <script>
         let users = [];
 
-        // URL Web App dari Google Apps Script
-        const url = "https://script.google.com/macros/s/AKfycbz9Vbpmgb5sBbH6vNZOX_rg6DXUyxwPClTM7VQxE7ytWTE2ygWlcbxvaAd-jLb8wLKU5g/exec"; // Ganti dengan URL Web App yang sudah Anda buat
-
-        // Fetch data JSON dari Google Spreadsheet
-        fetch(url)
+        // Mengambil file JSON dari direktori utama
+        fetch("data.json")
             .then(response => response.json())
             .then(data => {
                 users = data; // Simpan data JSON ke dalam variabel users
                 console.log("Data pengguna:", users); // Log untuk memastikan data masuk
             })
-            .catch(error => console.error("Gagal mengambil data:", error));
+            .catch(error => console.error("Gagal mengambil data JSON:", error));
 
         // Event Listener untuk Form Login
         document.getElementById("loginForm").addEventListener("submit", function(e) {

@@ -4,97 +4,155 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pemilihan Ketua Himpunan Mahasiswa Elektro</title>
-    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+
     <style>
-        /* Gaya Global */
-        body {
-            font-family: 'Arial', sans-serif;
+        /* Global Styles */
+        * {
             margin: 0;
             padding: 0;
-            background: linear-gradient(to right, #007bff, #0056b3);
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to right, #004aad, #3b82f6);
             display: flex;
-            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             min-height: 100vh;
+            flex-direction: column;
             color: #333;
         }
 
-        /* Kontainer Utama */
+        /* Container Utama */
         .container {
             background-color: #ffffff;
-            max-width: 400px;
-            margin: auto;
-            margin-top: 50px;
+            max-width: 500px;
             padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             text-align: center;
         }
 
+        /* Logo Section */
+        .logo-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .logo-container img {
+            width: 80px;
+            height: auto;
+            object-fit: contain;
+        }
+
         h1 {
-            color: #0056b3;
             font-size: 1.8rem;
+            font-weight: 600;
+            color: #004aad;
             margin-bottom: 10px;
         }
 
         h2 {
-            color: #007bff;
-            font-size: 1.4rem;
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #3b82f6;
             margin-bottom: 30px;
         }
 
-        /* Input dan Tombol */
+        /* Form Styles */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
         input {
             width: 100%;
             padding: 12px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
             font-size: 1rem;
+            outline: none;
+            transition: border 0.3s ease-in-out;
         }
 
+        input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+        }
+
+        /* Tombol */
         button {
-            background-color: #007bff;
-            color: #fff;
+            background-color: #004aad;
+            color: #ffffff;
             border: none;
             padding: 12px;
             width: 100%;
-            border-radius: 5px;
+            border-radius: 8px;
             font-size: 1rem;
             cursor: pointer;
+            font-weight: 600;
             transition: background-color 0.3s ease;
         }
 
         button:hover {
-            background-color: #0056b3;
+            background-color: #3b82f6;
         }
 
         /* Pesan Kesalahan */
         .error {
             color: red;
-            margin-top: 10px;
             font-size: 0.9rem;
+            margin-top: 10px;
         }
 
         /* Footer */
         footer {
-            margin-top: auto;
+            margin-top: 20px;
             text-align: center;
-            padding: 10px;
-            color: #ffffff;
-            background-color: #0056b3;
             font-size: 0.9rem;
+            color: #ffffff;
+            font-weight: 400;
         }
     </style>
 </head>
 <body>
-    <!-- Kontainer Halaman -->
+    <!-- Kontainer Utama -->
     <div class="container">
+        <!-- Logo Section -->
+        <div class="logo-container">
+            <img src="logo1.png" alt="Logo 1">
+            <img src="logo2.png" alt="Logo 2">
+            <img src="logo3.png" alt="Logo 3">
+            <img src="logo4.png" alt="Logo 4">
+        </div>
+
         <h1>Pemilihan Ketua Himpunan Mahasiswa Elektro</h1>
-        <h2>Universitas Jember</h2>
-        <h3>Periode 2025</h3>
+        <h2>Universitas Jember Periode 2025</h2>
+
+        <!-- Form Login -->
         <form id="loginForm">
-            <input type="text" id="username" placeholder="Masukkan Username" required>
-            <input type="password" id="password" placeholder="Masukkan Password" required>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Masukkan Username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Masukkan Password" required>
+            </div>
             <button type="submit">Login</button>
         </form>
         <div id="errorMessage" class="error"></div>
@@ -113,7 +171,7 @@
             const password = document.getElementById("password").value;
 
             // Simulasi Validasi Login
-            if (username === "1234" && password === "1234") {
+            if (username === "user1" && password === "password1") {
                 window.location.href = "voting.html"; // Redirect ke halaman voting
             } else {
                 document.getElementById("errorMessage").innerText = "Username atau password salah!";

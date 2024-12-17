@@ -234,14 +234,18 @@ button#redirectButton:hover {
         <label for="username">Username</label>
         <input type="text" id="username" placeholder="Masukkan Username" required>
     </div>
-<div class="form-group">
+<div class="form-group" style="position: relative;">
     <label for="password">Password</label>
     <input type="password" id="password" placeholder="Masukkan Password" required>
-    <!-- Checkbox untuk Tampilkan Password -->
-    <label style="display: flex; align-items: center; margin-top: 8px;">
-        <input type="checkbox" id="showPassword" style="margin-right: 5px;">
-        Tampilkan Password
-    </label>
+    <!-- Teks "Tampilkan" di dalam kolom -->
+    <span id="togglePassword" style="
+        position: absolute;
+        right: 10px;
+        top: 40px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        color: #3b82f6;
+    ">Tampilkan</span>
 </div>
     <button type="submit">Login</button>
 </form>
@@ -312,16 +316,21 @@ button#redirectButton:hover {
     });
 </script>
 <script>
-    // Event Listener untuk Tampilkan Password
-    document.getElementById("showPassword").addEventListener("change", function() {
+    // Event Listener untuk Teks "Tampilkan"
+    document.getElementById("togglePassword").addEventListener("click", function () {
         const passwordInput = document.getElementById("password");
-        if (this.checked) {
-            passwordInput.type = "text"; // Ubah ke teks untuk menampilkan password
+        const toggleText = document.getElementById("togglePassword");
+
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            toggleText.innerText = "Sembunyikan"; // Ubah teks menjadi "Sembunyikan"
         } else {
-            passwordInput.type = "password"; // Ubah ke password untuk menyembunyikan
+            passwordInput.type = "password";
+            toggleText.innerText = "Tampilkan"; // Ubah teks kembali menjadi "Tampilkan"
         }
     });
 </script>
+
 
     <!-- Footer -->
     <footer>

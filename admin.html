@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasil Voting</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2>Hasil Voting</h2>
+        <div id="chart_div"></div>
+    </div>
+
+    <script>
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            fetch("URL_APPS_SCRIPT_TAMPILKAN_HASIL")
+            .then(response => response.json())
+            .then(data => {
+                var chartData = [['Kandidat', 'Jumlah Suara']];
+                data.results.forEach(item => {
+                    chartData.push([item.candidate, item.votes]);
+                });
+
+                var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+                chart.draw(google.visualization.arrayToDataTable(chartData), { title: 'Hasil Pemilihan' });
+            });
+        }
+    </script>
+</body>
+</html>

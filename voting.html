@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Halaman Voting</title>
+    <title>Pemilihan Ketua Himpunan Mahasiswa Elektro</title>
+
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Styling -->
     <style>
-        /* Global Styles */
         * {
             margin: 0;
             padding: 0;
@@ -15,130 +18,174 @@
         }
 
         body {
-            background: #f4f6f9;
+            background: linear-gradient(to right, #004aad, #3b82f6);
             color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* Header dan Tombol Logout */
-        .header {
-            background-color: #004aad;
-            color: #fff;
-            padding: 10px 20px;
+        header {
             text-align: center;
-            position: relative;
+            margin-bottom: 30px;
+            color: #ffffff;
         }
 
-        .logout-btn {
-            position: absolute;
-            right: 20px;
-            top: 10px;
-            background-color: #ff4b5c;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        .logout-btn:hover {
-            background-color: #e43f4a;
-        }
-
-        /* Container Kandidat */
-        .candidates-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            padding: 40px;
-            max-width: 1200px;
-            margin: 40px auto;
-        }
-
-        .candidate-card {
-            background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            text-align: center;
-        }
-
-        .candidate-card img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-        }
-
-        .candidate-card h3 {
-            margin: 10px 0;
-            font-size: 1.2rem;
-            color: #004aad;
-        }
-
-        .candidate-card p {
-            padding: 0 15px;
-            font-size: 0.9rem;
-            color: #555;
+        header h1 {
+            font-size: 2rem;
             margin-bottom: 10px;
         }
 
-        .vote-btn {
-            background-color: #004aad;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            margin: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 600;
+        header h2 {
+            font-size: 1.2rem;
         }
 
-        .vote-btn:hover {
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .candidate {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 15px;
+        }
+
+        .candidate img {
+            width: 120px;
+            height: 120px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .candidate-details {
+            flex: 1;
+            margin-left: 20px;
+        }
+
+        .candidate-details h3 {
+            margin-bottom: 5px;
+            color: #004aad;
+        }
+
+        .candidate-details p {
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .vote-button {
+            background-color: #004aad;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .vote-button:hover {
             background-color: #3b82f6;
+        }
+
+        .logout {
+            margin-top: 20px;
+            text-align: right;
+        }
+
+        .logout button {
+            background-color: #f44336;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .logout button:hover {
+            background-color: #d32f2f;
+        }
+
+        footer {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #ffffff;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <!-- Header dan Tombol Logout -->
-    <div class="header">
+    <!-- Header -->
+    <header>
         <h1>Pemilihan Ketua Himpunan Mahasiswa Elektro</h1>
-        <button class="logout-btn" onclick="logout()">Logout</button>
-    </div>
+        <h2>Universitas Jember - Periode 2025</h2>
+    </header>
 
     <!-- Container Kandidat -->
-    <div class="candidates-container">
+    <div class="container">
         <!-- Kandidat 1 -->
-        <div class="candidate-card">
+        <div class="candidate">
             <img src="1.jpg" alt="Kandidat 1">
-            <h3>Nama Kandidat 1</h3>
-            <p>Visi: Menjadikan himpunan lebih inovatif.<br>Misi: Memberdayakan potensi anggota.</p>
-            <button class="vote-btn" onclick="submitVote('Kandidat 1')">Pilih</button>
+            <div class="candidate-details">
+                <h3>Kandidat 1 - Ahmad Rizki</h3>
+                <p><strong>Visi:</strong> Membangun Himpunan Mahasiswa yang aktif, kreatif, dan inovatif.</p>
+                <p><strong>Misi:</strong> 1. Mengadakan kegiatan rutin. 2. Menjembatani komunikasi mahasiswa.</p>
+            </div>
+            <button class="vote-button" data-kandidat="Ahmad Rizki">Pilih</button>
         </div>
+
         <!-- Kandidat 2 -->
-        <div class="candidate-card">
+        <div class="candidate">
             <img src="2.jpg" alt="Kandidat 2">
-            <h3>Nama Kandidat 2</h3>
-            <p>Visi: Membangun solidaritas kuat.<br>Misi: Meningkatkan kerjasama antar anggota.</p>
-            <button class="vote-btn" onclick="submitVote('Kandidat 2')">Pilih</button>
+            <div class="candidate-details">
+                <h3>Kandidat 2 - Bella Ayu</h3>
+                <p><strong>Visi:</strong> Menjadikan himpunan sebagai wadah yang inklusif dan berkembang.</p>
+                <p><strong>Misi:</strong> 1. Membangun kerja sama tim. 2. Memfasilitasi kegiatan akademik.</p>
+            </div>
+            <button class="vote-button" data-kandidat="Bella Ayu">Pilih</button>
         </div>
+
         <!-- Kandidat 3 -->
-        <div class="candidate-card">
+        <div class="candidate">
             <img src="3.jpg" alt="Kandidat 3">
-            <h3>Nama Kandidat 3</h3>
-            <p>Visi: Menjadi organisasi unggul.<br>Misi: Melakukan inovasi program kerja.</p>
-            <button class="vote-btn" onclick="submitVote('Kandidat 3')">Pilih</button>
+            <div class="candidate-details">
+                <h3>Kandidat 3 - Chandra Putra</h3>
+                <p><strong>Visi:</strong> Mendorong mahasiswa elektro untuk berprestasi dan berinovasi.</p>
+                <p><strong>Misi:</strong> 1. Mengadakan workshop. 2. Menyediakan dukungan bagi riset mahasiswa.</p>
+            </div>
+            <button class="vote-button" data-kandidat="Chandra Putra">Pilih</button>
+        </div>
+
+        <!-- Tombol Logout -->
+        <div class="logout">
+            <button id="logout">Logout</button>
         </div>
     </div>
 
-    <script>
-        const webAppUrl = "https://script.google.com/macros/s/AKfycby7POcrbs8FlEntZMRTuhQBO9Jjh89hmEZdS6wXThCP7NdPgZ6RbPamMfz4loU8sEuz/exec"; // Ganti dengan URL Web App Google Apps Script
+    <!-- Footer -->
+    <footer>
+        &copy; 2024 Himpunan Mahasiswa Elektro, Universitas Jember. All Rights Reserved.
+    </footer>
 
-        // Event Listener untuk Tombol Voting
+    <!-- Script -->
+    <script>
+        const webAppUrl = "https://script.google.com/macros/s/AKfycby7POcrbs8FlEntZMRTuhQBO9Jjh89hmEZdS6wXThCP7NdPgZ6RbPamMfz4loU8sEuz/exec"; // Ganti dengan URL Web App Google Apps Script Anda
+
+        // Event Listener untuk tombol voting
         document.querySelectorAll('.vote-button').forEach(button => {
             button.addEventListener('click', function () {
-                const kandidat = this.dataset.kandidat; // Ambil nama kandidat dari atribut data
-                const username = localStorage.getItem("username") || "Anonymous"; // Ambil username dari localStorage atau gunakan default
+                const kandidat = this.dataset.kandidat;
+                const username = localStorage.getItem("username") || "Anonymous";
 
                 // Kirim data voting ke Google Apps Script Web App
                 fetch(webAppUrl, {
@@ -150,7 +197,7 @@
                 .then(data => {
                     if (data.status === "success") {
                         alert("Voting berhasil! Terima kasih telah memilih.");
-                        window.location.href = "thankyou.html"; // Redirect ke halaman "Terima Kasih"
+                        window.location.href = "thankyou.html"; // Redirect jika sukses
                     } else {
                         alert("Terjadi kesalahan: " + data.message);
                     }
@@ -162,11 +209,11 @@
             });
         });
 
-        // Fungsi Logout
-        function logout() {
-            localStorage.removeItem("username"); // Hapus username dari localStorage
-            window.location.href = "index.html"; // Redirect kembali ke halaman login
-        }
+        // Logout
+        document.getElementById('logout').addEventListener('click', function () {
+            localStorage.removeItem("username"); // Hapus data login
+            window.location.href = "index.html"; // Redirect ke halaman login
+        });
     </script>
 </body>
 </html>

@@ -132,35 +132,40 @@
     </div>
 
     <script>
+        const webAppUrl = "https://script.google.com/macros/s/AKfycby7POcrbs8FlEntZMRTuhQBO9Jjh89hmEZdS6wXThCP7NdPgZ6RbPamMfz4loU8sEuz/exec"; // Ganti dengan URL Web App Google Apps Script
+
+        // Event Listener untuk Tombol Voting
+        document.querySelectorAll('.vote-button').forEach(button => {
+            button.addEventListener('click', function () {
+                const kandidat = this.dataset.kandidat; // Ambil nama kandidat dari atribut data
+                const username = localStorage.getItem("username") || "Anonymous"; // Ambil username dari localStorage atau gunakan default
+
+                // Kirim data voting ke Google Apps Script Web App
+                fetch(webAppUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ kandidat: kandidat, username: username })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === "success") {
+                        alert("Voting berhasil! Terima kasih telah memilih.");
+                        window.location.href = "thankyou.html"; // Redirect ke halaman "Terima Kasih"
+                    } else {
+                        alert("Terjadi kesalahan: " + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    alert("Terjadi kesalahan. Coba lagi.");
+                });
+            });
+        });
+
         // Fungsi Logout
         function logout() {
-            alert("Anda berhasil logout.");
-            window.location.href = "index.html"; // Redirect ke halaman login
-        }
-
-        // Fungsi Submit Vote
-        function submitVote(candidate) {
-            // Kirim data ke Google Apps Script
-            fetch('https://script.google.com/macros/s/AKfycby7POcrbs8FlEntZMRTuhQBO9Jjh89hmEZdS6wXThCP7NdPgZ6RbPamMfz4loU8sEuz/exec', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ kandidat: candidate })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === "success") {
-                    alert("Anda berhasil memilih " + candidate + ". Terima kasih!");
-                    window.location.href = "thankyou.html"; // Redirect ke halaman terima kasih
-                } else {
-                    alert("Gagal mengirim voting. Silakan coba lagi.");
-                }
-            })
-            .catch(error => {
-                console.error("Error:", error);
-                alert("Terjadi kesalahan. Coba lagi.");
-            });
+            localStorage.removeItem("username"); // Hapus username dari localStorage
+            window.location.href = "index.html"; // Redirect kembali ke halaman login
         }
     </script>
 </body>

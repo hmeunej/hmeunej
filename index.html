@@ -188,24 +188,32 @@
     <button type="submit">Login</button>
 </form>
 <div id="errorMessage" class="error"></div>
-
-<!-- Script Redirect -->
 <script>
-    document.getElementById("loginForm").addEventListener("submit", function(e) {
-        e.preventDefault(); // Mencegah form submit default
-        
-        const username = document.getElementById("username").value;
-        const password = document.getElementById("password").value;
+    let users = [];
 
-        // Simulasi validasi username dan password
-        if (username === "user1" && password === "password1") { 
-            window.location.href = "voting.html"; // Hyperlink ke halaman voting.html
+    // Ambil data dari Google Spreadsheet
+    fetch("https://script.google.com/macros/s/AKfycbwtSnPNEXTrbbS8B1ekzDtIUueACSOMDIHNQpxhsx0moBbxOchgoKq5gsSHaqmzWES3Fg/exec") // Ganti dengan URL Web App yang Anda buat
+        .then(response => response.json())
+        .then(data => {
+            users = data;
+        })
+        .catch(error => console.error("Gagal mengambil data:", error));
+
+    // Event Listener untuk Form Login
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+        const usernameInput = document.getElementById("username").value;
+        const passwordInput = document.getElementById("password").value;
+
+        // Cek Username dan Password
+        const user = users.find(u => u.username === usernameInput && u.password === passwordInput);
+        if (user) {
+            window.location.href = "voting.html"; // Redirect jika berhasil
         } else {
             document.getElementById("errorMessage").innerText = "Username atau password salah!";
         }
     });
 </script>
-
     <!-- Footer -->
     <footer>
         &copy; 2024 Himpunan Mahasiswa Elektro, Universitas Jember. All Rights Reserved.

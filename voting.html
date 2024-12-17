@@ -4,216 +4,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pemilihan Ketua Himpunan Mahasiswa Elektro</title>
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-
-    <!-- Styling -->
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        body {
-            background: linear-gradient(to right, #004aad, #3b82f6);
-            color: #333;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #ffffff;
-        }
-
-        header h1 {
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-
-        header h2 {
-            font-size: 1.2rem;
-        }
-
-        .container {
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            max-width: 800px;
-            width: 100%;
-        }
-
-        .candidate {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 15px;
-        }
-
-        .candidate img {
-            width: 120px;
-            height: 120px;
-            border-radius: 10px;
-            object-fit: cover;
-        }
-
-        .candidate-details {
-            flex: 1;
-            margin-left: 20px;
-        }
-
-        .candidate-details h3 {
-            margin-bottom: 5px;
-            color: #004aad;
-        }
-
-        .candidate-details p {
-            margin-bottom: 5px;
-            font-size: 0.9rem;
-        }
-
-        .vote-button {
-            background-color: #004aad;
-            color: #ffffff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: background-color 0.3s ease;
-        }
-
-        .vote-button:hover {
-            background-color: #3b82f6;
-        }
-
-        .logout {
-            margin-top: 20px;
-            text-align: right;
-        }
-
-        .logout button {
-            background-color: #f44336;
-            color: #ffffff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .logout button:hover {
-            background-color: #d32f2f;
-        }
-
-        footer {
-            margin-top: 30px;
-            font-size: 0.9rem;
-            color: #ffffff;
-            text-align: center;
-        }
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .candidate { display: inline-block; margin: 20px; text-align: center; }
+        img { width: 150px; height: auto; border-radius: 10px; }
+        button { margin-top: 10px; padding: 10px; background: #004aad; color: #fff; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #3b82f6; }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <h1>Pemilihan Ketua Himpunan Mahasiswa Elektro</h1>
-        <h2>Universitas Jember - Periode 2025</h2>
-    </header>
+    <h1>Pemilihan Ketua Himpunan Mahasiswa Elektro</h1>
+    <h2>Universitas Jember - Periode 2025</h2>
 
-    <!-- Container Kandidat -->
-    <div class="container">
-        <!-- Kandidat 1 -->
-        <div class="candidate">
-            <img src="1.jpg" alt="Kandidat 1">
-            <div class="candidate-details">
-                <h3>Kandidat 1 - Ahmad Rizki</h3>
-                <p><strong>Visi:</strong> Membangun Himpunan Mahasiswa yang aktif, kreatif, dan inovatif.</p>
-                <p><strong>Misi:</strong> 1. Mengadakan kegiatan rutin. 2. Menjembatani komunikasi mahasiswa.</p>
-            </div>
-            <button class="vote-button" data-kandidat="Ahmad Rizki">Pilih</button>
-        </div>
-
-        <!-- Kandidat 2 -->
-        <div class="candidate">
-            <img src="2.jpg" alt="Kandidat 2">
-            <div class="candidate-details">
-                <h3>Kandidat 2 - Bella Ayu</h3>
-                <p><strong>Visi:</strong> Menjadikan himpunan sebagai wadah yang inklusif dan berkembang.</p>
-                <p><strong>Misi:</strong> 1. Membangun kerja sama tim. 2. Memfasilitasi kegiatan akademik.</p>
-            </div>
-            <button class="vote-button" data-kandidat="Bella Ayu">Pilih</button>
-        </div>
-
-        <!-- Kandidat 3 -->
-        <div class="candidate">
-            <img src="3.jpg" alt="Kandidat 3">
-            <div class="candidate-details">
-                <h3>Kandidat 3 - Chandra Putra</h3>
-                <p><strong>Visi:</strong> Mendorong mahasiswa elektro untuk berprestasi dan berinovasi.</p>
-                <p><strong>Misi:</strong> 1. Mengadakan workshop. 2. Menyediakan dukungan bagi riset mahasiswa.</p>
-            </div>
-            <button class="vote-button" data-kandidat="Chandra Putra">Pilih</button>
-        </div>
-
-        <!-- Tombol Logout -->
-        <div class="logout">
-            <button id="logout">Logout</button>
-        </div>
+    <!-- Kandidat 1 -->
+    <div class="candidate">
+        <img src="1.jpg" alt="Kandidat 1">
+        <h3>Calon 1</h3>
+        <p>Visi: Membangun organisasi yang lebih baik.<br>Misi: Transparansi dan inovasi.</p>
+        <button class="vote-button" data-kandidat="Kandidat 1">Pilih</button>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        &copy; 2024 Himpunan Mahasiswa Elektro, Universitas Jember. All Rights Reserved.
-    </footer>
+    <!-- Kandidat 2 -->
+    <div class="candidate">
+        <img src="2.jpg" alt="Kandidat 2">
+        <h3>Calon 2</h3>
+        <p>Visi: Memberikan kontribusi nyata.<br>Misi: Keterbukaan dan keberlanjutan.</p>
+        <button class="vote-button" data-kandidat="Kandidat 2">Pilih</button>
+    </div>
 
-    <!-- Script -->
+    <!-- Kandidat 3 -->
+    <div class="candidate">
+        <img src="3.jpg" alt="Kandidat 3">
+        <h3>Calon 3</h3>
+        <p>Visi: Membawa perubahan positif.<br>Misi: Kolaborasi dan kebersamaan.</p>
+        <button class="vote-button" data-kandidat="Kandidat 3">Pilih</button>
+    </div>
+
+    <!-- Tombol Logout -->
+    <div style="margin-top: 30px;">
+        <button onclick="logout()">Logout</button>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js"></script>
+
     <script>
-        const webAppUrl = "https://script.google.com/macros/s/AKfycbyfU3xURhS-pAoVlzj4k8qiUW8IfZLi8ZPxBHOrnUXMrScUUI96Pyy1Sip-k3FfVDBh/exec"; // Ganti dengan URL Web App Google Apps Script Anda
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyCk0MKkFLR6GWlbVWw6PwV0eXyHTVKEoVI",
+  authDomain: "e-voting-hme-2025.firebaseapp.com",
+  databaseURL: "https://e-voting-hme-2025-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "e-voting-hme-2025",
+  storageBucket: "e-voting-hme-2025.firebasestorage.app",
+  messagingSenderId: "109600283344",
+  appId: "1:109600283344:web:920745c831eaa312665cd5",
+  measurementId: "G-TC906L46K5"
+};
+        // Inisialisasi Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
 
-        // Event Listener untuk tombol voting
-        document.querySelectorAll('.vote-button').forEach(button => {
-            button.addEventListener('click', function () {
-                const kandidat = this.dataset.kandidat;
-                const username = localStorage.getItem("username") || "Anonymous";
+        // Simpan voting ke Firebase
+        function simpanVoting(kandidat, username) {
+            database.ref("voting").push({
+                kandidat: kandidat,
+                username: username,
+                timestamp: new Date().toISOString()
+            }).then(() => {
+                alert("Voting berhasil!");
+            }).catch(error => {
+                console.error("Error:", error.message);
+                alert("Terjadi kesalahan. Coba lagi.");
+            });
+        }
 
-                // Kirim data voting ke Google Apps Script Web App
-                fetch(webAppUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ kandidat: kandidat, username: username })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.status === "success") {
-                        alert("Voting berhasil! Terima kasih telah memilih.");
-                        window.location.href = "thankyou.html"; // Redirect jika sukses
-                    } else {
-                        alert("Terjadi kesalahan: " + data.message);
-                    }
-                })
-                .catch(error => {
-                    console.error("Error:", error);
-                    alert("Terjadi kesalahan. Coba lagi.");
-                });
+        // Event tombol voting
+        document.querySelectorAll(".vote-button").forEach(button => {
+            button.addEventListener("click", function() {
+                const kandidat = this.getAttribute("data-kandidat");
+                const username = "User123"; // Contoh username
+                simpanVoting(kandidat, username);
             });
         });
 
-        // Logout
-        document.getElementById('logout').addEventListener('click', function () {
-            localStorage.removeItem("username"); // Hapus data login
-            window.location.href = "index.html"; // Redirect ke halaman login
-        });
+        // Fungsi Logout
+        function logout() {
+            window.location.href = "index.html";
+        }
     </script>
 </body>
 </html>

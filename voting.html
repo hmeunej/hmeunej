@@ -121,16 +121,6 @@ function simpanVoting(kandidat, username) {
         alert("Terjadi kesalahan. Coba lagi.");
     });
 }
-
-
-        // Event Listener untuk Tombol Voting
-        document.querySelectorAll(".vote-button").forEach(button => {
-            button.addEventListener("click", function() {
-                const kandidat = this.getAttribute("data-kandidat");
-                const username = prompt("Masukkan nama Anda (opsional):") || "Guest"; // Input nama (opsional)
-                simpanVoting(kandidat, username);
-            });
-        });
     </script>
 </body>
 </html>
